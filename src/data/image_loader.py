@@ -17,6 +17,8 @@ class DataLoader:
     which should be placed in the root directory of the project
 
     """
+    mean = [0.485, 0.456, 0.406]
+    std = [0.229, 0.224, 0.225]
 
     data_dir = DATA_DIR
     img_height = IMG_HEIGHT
@@ -24,6 +26,7 @@ class DataLoader:
     transform = transforms.Compose([
         transforms.Resize((img_height, img_width)),
         transforms.ToTensor(),
+        transforms.Normalize(mean, std),
     ])
 
     dataset = ImageFolder(
@@ -39,7 +42,7 @@ class DataLoader:
         lengths=dataset_lengths
     )
 
-    batch_size = 64
+    batch_size = 256 
     log_success('DataLoader created')
 
     def get_loaders(self) -> torch.utils.data.DataLoader:

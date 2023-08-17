@@ -24,22 +24,22 @@ class CNN_1(nn.Module):
 
         self.conv1 = nn.Conv2d(
             in_channels=3,
-            out_channels=16,
-            kernel_size=(5, 5),
+            out_channels=8,
+            kernel_size=(8, 16),
         )
         output_size = self.conv1(torch.zeros(3, IMG_WIDTH, IMG_HEIGHT)).size()
         print(f"size after conv1 {output_size}")
 
         self.pool1 = nn.MaxPool2d(
             kernel_size=(5, 5),
-            stride=2,
+            stride=10,
         )
         output_size = self.pool1(torch.zeros(output_size)).size()
         print(f"size after pool1 {output_size}")
 
         self.conv2 = nn.Conv2d(
-            in_channels=16,
-            out_channels=32,
+            in_channels=8,
+            out_channels=16,
             kernel_size=(5, 5),
         )
         output_size = self.conv2(torch.zeros(output_size)).size()
@@ -47,7 +47,7 @@ class CNN_1(nn.Module):
 
         self.pool2 = nn.MaxPool2d(
             kernel_size=(2, 2),
-            stride=2,
+            stride=5,
         )
         output_size = self.pool2(torch.zeros(output_size)).size()
         print(f"size after pool2 {output_size}")

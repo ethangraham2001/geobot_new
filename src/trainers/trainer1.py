@@ -55,6 +55,9 @@ class ModelTrainer1:
                 if batch_count % 10 == 0:
                     print(Style.DIM + f'   -->batch={batch_count}' + Style.RESET_ALL)
 
+                if total_samples % 1000*32 == 0:
+                    print(Style.BRIGHT + f'   -->samples={total_samples}' + Style.RESET_ALL)
+
             # save model state
             torch.save(self.model.state_dict(), self.save_location)
             print(Style.BRIGHT + f'--> model saved to {self.save_location}!' + Style.RESET_ALL)
