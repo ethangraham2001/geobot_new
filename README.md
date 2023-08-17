@@ -15,3 +15,6 @@ root/
 |   |   Albania/
 |   |   etc/
 ```
+
+The dataset can be found with this 
+[Kaggle link](https://www.kaggle.com/datasets/ubitquitin/geolocation-geoguessr-images-50k)
