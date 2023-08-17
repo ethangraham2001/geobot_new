@@ -1,3 +1,7 @@
+import torch.optim as optim
+from colorama import Fore, Style, Back
+import time
+
 from . import LEARNING_RATE, NUM_EPOCHS, CRITERION
 
 class ModelTrainer1:
@@ -15,8 +19,27 @@ class ModelTrainer1:
 
     def train(self):
         """
-        Trains the model
+        Trains the class' model
         """
+        optimizer = optim.Adam(self.model.parameters(), lr=self.lr)
+        total_time = 0
+        batch_count = 0
+
         for epoch in range(self.num_epochs):
+            start_time = time.time()
+            print(Back.WHITE + Fore.BLACK + Style.BRIGHT)
+            print(f"starting epoch: [{epoch}/{self.num_epochs}]" + Back.RESET + Fore.RESET + Style.RESET_ALL)
+
             for images, labels in self.train_loader:
-                print(labels.shape)
+                outputs = self.model(images)
+                loss = self.criterion(outputs, labels)
+                loss.backward()
+                optimizer.step()
+                batch_count += 1
+                if batch_count % 10 == 0:
+                    print(Style.DIM + f'   --->batch={batch_count}' + Style.RESET_ALL)
+            
+            end_time = time.time()
+            iteration_time = end_time - start_time
+            total_time += iteration_time
+            print(Fore.CYAN + Style.DIM + f"--> Epoch took {iteration_time}. loss = {loss.item()}")
