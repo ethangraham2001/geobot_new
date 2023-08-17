@@ -12,7 +12,7 @@ class ImageDisplay:
 
     log_success('Image Display created')
 
-    def display_image(self, img):
+    def display_image(self, img, label):
         """
         Displays image 
         """
@@ -23,4 +23,5 @@ class ImageDisplay:
 
         img = np.transpose(img, (1, 2, 0))
         plt.imshow(img)
+        plt.title(label)
         plt.show()

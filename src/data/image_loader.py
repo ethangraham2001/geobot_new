@@ -9,7 +9,7 @@ import torchvision.transforms as transforms
 from colorama import Fore, Back, Style
 
 from .loggers import log_success, log_failure, log_small
-from . import IMG_HEIGHT, IMG_WIDTH
+from . import IMG_HEIGHT, IMG_WIDTH, DATA_DIR
 
 class DataLoader:
     """
@@ -18,7 +18,7 @@ class DataLoader:
 
     """
 
-    data_dir = dirname(os.getcwd())+('/compressed_dataset')
+    data_dir = DATA_DIR
     img_height = IMG_HEIGHT
     img_width = IMG_WIDTH
     transform = transforms.Compose([
